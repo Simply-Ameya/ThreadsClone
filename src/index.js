@@ -8,7 +8,9 @@ import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.render(
+  //pass the store through provide like usual
   <Provider store={store}>
+    {/* wrap the main component inside persist gate. This will delay our apps UI till the persisted state has been saved to redux */}
     <PersistGate persistor={persistor}>
       <App />
     </PersistGate>
@@ -16,7 +18,5 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();
