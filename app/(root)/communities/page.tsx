@@ -1,12 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
-import ProfileHeader from "@/components/shared/ProfileHeader";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { profileTabs } from "@/constants";
-import Image from "next/image";
-import ThreadsTab from "@/components/shared/ThreadsTab";
-import UserCard from "@/components/cards/UserCard";
+import { fetchUser } from "@/lib/actions/user.actions";
 import { fetchCommunities } from "@/lib/actions/community.actions";
 import CommunityCard from "@/components/cards/CommunityCard";
 
@@ -43,7 +37,6 @@ const page = async () => {
                 imgUrl={community.image}
                 bio={community.bio}
                 members={community.members}
-                personType="Community"
               />
             ))}
           </>

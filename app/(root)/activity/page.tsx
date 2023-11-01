@@ -1,16 +1,7 @@
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import {
-  fetchUser,
-  fetchUsers,
-  getActicities,
-} from "@/lib/actions/user.actions";
-import ProfileHeader from "@/components/shared/ProfileHeader";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { profileTabs } from "@/constants";
+import { fetchUser, getActivity } from "@/lib/actions/user.actions";
 import Image from "next/image";
-import ThreadsTab from "@/components/shared/ThreadsTab";
-import UserCard from "@/components/cards/UserCard";
 import Link from "next/link";
 
 const page = async () => {
@@ -20,7 +11,7 @@ const page = async () => {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onBoarded) redirect("/onboarding");
 
-  const activity = await getActicities(userInfo._id);
+  const activity = await getActivity(userInfo._id);
 
   return (
     <section>

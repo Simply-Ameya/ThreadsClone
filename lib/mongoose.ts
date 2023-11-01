@@ -10,6 +10,7 @@ export const connectDB = async () => {
   console.log("mongodb is available. Connected to database");
 
   try {
+    //@ts-ignore
     await mongoose.connect(process.env.MONGODB_URL);
     isConnected = true;
     console.log("Connected to database");

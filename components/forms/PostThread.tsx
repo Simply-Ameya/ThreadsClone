@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,7 +16,6 @@ import { Textarea } from "../ui/textarea";
 import { usePathname, useRouter } from "next/navigation";
 import { threadValidation } from "@/lib/Validations/thread";
 import { createThread } from "@/lib/actions/thread.actions";
-// import { updateUser } from "@/lib/actions/user.actions";
 import { useOrganization } from "@clerk/nextjs";
 
 interface Props {
