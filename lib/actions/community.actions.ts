@@ -11,7 +11,7 @@ import { connectDB } from "../mongoose";
 export async function createCommunity(
   id: string,
   name: string,
-  username: string,
+  userName: string,
   image: string,
   bio: string,
   createdById: string // Change the parameter name to reflect it's an id
@@ -29,7 +29,7 @@ export async function createCommunity(
     const newCommunity = new Community({
       id,
       name,
-      username,
+      userName,
       image,
       bio,
       createdBy: user._id, // Use the mongoose ID of the user
@@ -58,7 +58,7 @@ export async function fetchCommunityDetails(id: string) {
       {
         path: "members",
         model: User,
-        select: "name username image _id id",
+        select: "name userName image _id id",
       },
     ]);
 
@@ -126,10 +126,10 @@ export async function fetchCommunities({
     // Create an initial query object to filter communities.
     const query: FilterQuery<typeof Community> = {};
 
-    // If the search string is not empty, add the $or operator to match either username or name fields.
+    // If the search string is not empty, add the $or operator to match either userName or name fields.
     if (searchString.trim() !== "") {
       query.$or = [
-        { username: { $regex: regex } },
+        { userName: { $regex: regex } },
         { name: { $regex: regex } },
       ];
     }
@@ -245,7 +245,7 @@ export async function removeUserFromCommunity(
 export async function updateCommunityInfo(
   communityId: string,
   name: string,
-  username: string,
+  userName: string,
   image: string
 ) {
   try {
@@ -254,7 +254,7 @@ export async function updateCommunityInfo(
     // Find the community by its _id and update the information
     const updatedCommunity = await Community.findOneAndUpdate(
       { id: communityId },
-      { name, username, image }
+      { name, userName, image }
     );
 
     if (!updatedCommunity) {
